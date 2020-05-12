@@ -47,15 +47,18 @@ export default class Stocks extends Component {
     console.log(url.href);
     fetch(url, {
       method: "GET",
-    })
+      })
       .then((response) => response.json())
-      /*
-    .then((json) => Object.keys(json.history).forEach(function (key) {
-      yAxis.push(json.history[key]);
-    }));
-    */
-    .then((json) => Object.keys(json.history).forEach(key => testObj.push({ date: key, value: json.history[key] })));
+      .then(json => {
+        Object.keys(json.history).forEach(key => {
+          if (testObj.length <=14) {
+            testObj.push({date: key, value: json.history[key]});
+          }
+        }) 
+    });
+
     console.log("tsting something here");
+    console.log(testObj);
     console.log(testObj.length);
     for (var i = 0; i < testObj.length; i++) {
       console.log("looping thoughthe array");
@@ -63,10 +66,11 @@ export default class Stocks extends Component {
       yAxis.push(testObj[i].value);
     }
     testObj.forEach(element => {
+      console.log("testing the elements"); 
+      console.log(element);
       xAxis.push(element.date);
     });
     console.log("testing"); 
-    console.log(testObj);
     console.log(yAxis);
     console.log(xAxis);
   }
