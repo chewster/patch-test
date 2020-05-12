@@ -3,7 +3,7 @@ import "./App.css";
 import Header from "./js/components/header.jsx";
 import Introduction from "./js/components/introduction.jsx";
 import News from "./js/components/news.jsx";
-//import Stocks from "./js/components/stocks.jsx"
+import Stocks from "./js/components/stocks.jsx"
 
 class App extends Component {
   render() {
@@ -14,6 +14,7 @@ class App extends Component {
             <Header></Header>
             <Introduction></Introduction>
             <News></News>
+            <Stocks></Stocks>
           </div>
         </div>
       </div>
