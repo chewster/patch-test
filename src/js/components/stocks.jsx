@@ -36,7 +36,7 @@ export default class Stocks extends Component {
     let params = {
       "base": "USD",
       "convert_to": "GBP",
-      "api_token": "GARvl5UYhUURDgJ4d8yPClNdMPn6Hexg7sMm4LEQ44yFanNNfJrHkQh6uAvo",
+      "api_token": "demo",
     }, 
     xAxis =[], 
     yAxis =  [], 
@@ -49,27 +49,26 @@ export default class Stocks extends Component {
       method: "GET",
       })
       .then((response) => response.json())
-      .then(json => {
+      //.then(json => console.log(json.history));
+      /*
+    .then((json) => Object.keys(json.history).forEach(function (key) {
+      yAxis.push(json.history[key]);
+    }));
+    */
+    //.then((json) => Object.keys(json.history).forEach(key => testObj.push({ date: key, value: json.history[key] })));
+    .then(json => {
         Object.keys(json.history).forEach(key => {
-          if (testObj.length <=14) {
-            testObj.push({date: key, value: json.history[key]});
-          }
+            if (testObj.length <=14) {
+                testObj.push({date: key, value: json.history[key]});
+            }
         }) 
     });
+    
 
     console.log("tsting something here");
     console.log(testObj);
     console.log(testObj.length);
-    for (var i = 0; i < testObj.length; i++) {
-      console.log("looping thoughthe array");
-      xAxis.push(testObj[i].date); 
-      yAxis.push(testObj[i].value);
-    }
-    testObj.forEach(element => {
-      console.log("testing the elements"); 
-      console.log(element);
-      xAxis.push(element.date);
-    });
+    xAxis = testObj.map((item, i) => item[i]["date"]);
     console.log("testing"); 
     console.log(yAxis);
     console.log(xAxis);
