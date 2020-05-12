@@ -18,45 +18,13 @@ export default class Stocks extends Component {
     this.state = {
       items: [],
       error: null,
-      isLoading: false,
-      jsonResult: {}
+      isLoading: false    
     };
   }
 
   componentDidMount() {
     this.setState({ isLoading: true });
- /*
-    const url = new URL(
-      "https://api.worldtradingdata.com/api/v1/forex_history"
-    );
-    let params = {
-      "base": "USD",
-      "convert_to": "GBP",
-      "api_token": "GARvl5UYhUURDgJ4d8yPClNdMPn6Hexg7sMm4LEQ44yFanNNfJrHkQh6uAvo",
-    };
-    Object.keys(params)
-      .forEach(key => url.searchParams.append(key, params[key]));
-    
-    console.log("tesing in here");
-    console.log(url);
-    console.log(url.href);
 
-    fetch(url, {method: "GET"})
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error("Something went wrong ... no data found");
-        }
-      })
-      .then((data) =>
-        this.setState({ items: data, isLoading: false })
-      )
-      .catch((error) => this.setState({ error, isLoading: false }));
-      console.log(this.state.items);
-      console.log(this.state.error);
-      console.log(data);
-      */
     const url = new URL(
       "https://api.worldtradingdata.com/api/v1/forex_history"
     );
@@ -65,7 +33,9 @@ export default class Stocks extends Component {
       "base": "USD",
       "convert_to": "GBP",
       "api_token": "GARvl5UYhUURDgJ4d8yPClNdMPn6Hexg7sMm4LEQ44yFanNNfJrHkQh6uAvo",
-    };
+    }, 
+    jsonResult, 
+    testObj =  [];
     Object.keys(params)
       .forEach(key => url.searchParams.append(key, params[key]));
 
@@ -73,14 +43,11 @@ export default class Stocks extends Component {
       method: "GET",
     })
     .then(response => response.json())
-    .then((json) => 
-      this.setState({ 
-        jsonResult: json.history, 
-        isLoading: false}
-    ))
-    //.then(json => console.log( json.history));
+    .then((json) => testObj.push(json.history));
     console.log("testing"); 
-    console.log(this.state.jsonResult);
+    //testObj = JSON.parse(jsonResult[]); 
+    console.log(testObj);
+    console.log(testObj[0])
   }
   render() {
         const { items, isLoading, error } = this.state;
