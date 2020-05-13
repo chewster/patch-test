@@ -1,4 +1,9 @@
-canvas.chartjs-render-monitor {
-    max-width: 100vw;
-    max-height: 100vh;
+#stocks {
+    nav {
+        float: right;
+    }
+    .canvas.chartjs-render-monitor {
+        max-width: 100vw;
+        max-height: 100vh;
+    }
 }

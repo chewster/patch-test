@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import Nav from './nav.jsx';
 import {Line} from 'react-chartjs-2';
+import "../../css/stocks.scss";
 
 export default class Stocks extends Component {
   constructor(props) {
@@ -71,6 +73,7 @@ export default class Stocks extends Component {
         const { graphData, isLoading, error } = this.state;
         return (
           <section className="section-content" data-section="stocks" id="stocks">
+            <Nav></Nav>
             <div>
               <Line
                 data={graphData}

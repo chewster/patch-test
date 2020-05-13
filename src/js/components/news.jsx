@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Carousel from "react-elastic-carousel";
+import Nav from './nav.jsx';
 import '../../css/news.scss';
 
 function getCurrentDate(separator = '-') {
@@ -91,6 +92,7 @@ export default class News extends Component {
                             </button>
                         </form>
                     </div>
+                    <Nav/>
                     <Carousel className = "news-carousel" itemsToShow={3}>
                         {articles.map(article =>
                         <div className="article">

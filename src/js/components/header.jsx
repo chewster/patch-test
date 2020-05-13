@@ -5,8 +5,8 @@ import '../../css/header.scss'
 export default class Introduction extends Component {
     render() {
         return (
-          <header>
-            <div className="content">
+        <header className="header section-content" id="home">
+          <div className="content">
             <h1>Christina Chiu</h1>
             <span>This is my patch.com coding assessment.</span>
             <nav id="colorlib-main-menu" role="navigation" className="navbar">
@@ -18,7 +18,6 @@ export default class Introduction extends Component {
                       to="news"
                       spy={true}
                       smooth={true}
-                      offset={-70}
                       duration={500}
                     >
                       News
@@ -30,7 +29,6 @@ export default class Introduction extends Component {
                       to="stocks"
                       spy={true}
                       smooth={true}
-                      offset={-70}
                       duration={500}
                     >
                       Stocks

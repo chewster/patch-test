@@ -1,6 +1,11 @@
 .header {
     padding: 0 80px;
 }
+#news {
+    .header {
+        width: 75%;
+        float: left;
+    }
 .news-carousel {
     height: 80vh;
     padding: 3% 0;
@@ -18,4 +23,5 @@
             height: 45%;
         }
     }
+}
 }

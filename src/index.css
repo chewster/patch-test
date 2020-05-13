@@ -6,3 +6,20 @@ body {
 section {
   padding: 5% 0;
 }
+nav {
+  background: rgba(0,0,0, .65);
+  color: rgb(255,255,255);
+  width: 25%;
+  float: left;
+}
+#navbar {
+  margin: 0 auto;
+}
+nav ul {
+  list-style: none;
+}
+nav li {
+  float: left;
+  cursor: pointer;
+  padding: 0px 35px 0px 0;
+}
