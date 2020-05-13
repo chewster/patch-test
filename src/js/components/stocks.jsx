@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {Bar, Line, Pie} from 'react-chartjs-2';
+import {Line} from 'react-chartjs-2';
 
 var state = {
   labels: ["January", "February", "March", "April", "May"],
@@ -41,22 +41,24 @@ export default class Stocks extends Component {
   }
 
   handleResponse (response) {
-    console.log("testing the handling of the response");
-    console.log(response);
-    let xAxis = [], 
-        yAxis = [], 
-        testObj=[]; 
-    console.log("testing the x axis"); 
-    console.log("end of testing the x axis");
-    Object.keys(response).forEach(key => testObj.push({ date: key, value: response[key] }));
-    xAxis = testObj.map((item) => item["date"]);
-    yAxis = testObj.map((item) => item['key']);
-    this.setState({graphData:{['label']: xAxis}});
-    state.labels  = xAxis;
-    console.log(xAxis);
-    console.log("testing here");
-    console.log(state.labels);
-    console.log(this.state.graphData);
+    let xAxis = [],
+      yAxis = [],
+      testResponse = [];
+    Object.keys(response).forEach(key => testResponse.push({ date: key, value: response[key] }));
+    xAxis = testResponse.map((item) => item["date"]);
+    yAxis = testResponse.map((item) => item['value']);
+    let testDataset = [
+      {
+        label: "USD",
+        fill: false,
+        lineTension: 0.5,
+        backgroundColor: "rgba(75,192,192,1)",
+        borderWidth: 2,
+        data: yAxis,
+      },
+    ]; 
+    this.setState({graphData:{['labels']: xAxis}});
+    this.setState({graphData:{['datasets']: testDataset}})
   }
   componentDidMount() {
     this.setState({ isLoading: true });
@@ -81,15 +83,15 @@ export default class Stocks extends Component {
       .catch((error) => this.setState({ error, isLoading: false }));
   }
   render() {
-        const { articles, isLoading, error } = this.state;
+        const { graphData, isLoading, error } = this.state;
         return (
           <div>
             <Line
-              data={state}
+              data={graphData}
               options={{
                 title: {
                   display: true,
-                  text: "Average Rainfall per month",
+                  text: "USD to GBP",
                   fontSize: 20,
                 },
                 legend: {
@@ -99,81 +101,6 @@ export default class Stocks extends Component {
               }}
             />
           </div>
-        );
-    
-    /*
-    		const options = {
-          animationEnabled: true,
-          exportEnabled: true,
-          theme: "light2", // "light1", "dark1", "dark2"
-          title: {
-            text: "USD to Sterling",
-          },
-          axisY: {
-            title: "Bounce Rate",
-            includeZero: false,
-            suffix: "%",
-          },
-          axisX: {
-            title: "USD",
-            prefix: "W",
-            interval: 2,
-          },
-          data: [
-            {
-              type: "line",
-              toolTipContent: "Week {x}: {y}%",
-              dataPoints: [
-                { x: 1, y: 64 },
-                { x: 2, y: 61 },
-                { x: 3, y: 64 },
-                { x: 4, y: 62 },
-                { x: 5, y: 64 },
-                { x: 6, y: 60 },
-                { x: 7, y: 58 },
-                { x: 8, y: 59 },
-                { x: 9, y: 53 },
-                { x: 10, y: 54 },
-                { x: 11, y: 61 },
-                { x: 12, y: 60 },
-                { x: 13, y: 55 },
-                { x: 14, y: 60 },
-                { x: 15, y: 56 },
-                { x: 16, y: 60 },
-                { x: 17, y: 59.5 },
-                { x: 18, y: 63 },
-                { x: 19, y: 58 },
-                { x: 20, y: 54 },
-                { x: 21, y: 59 },
-                { x: 22, y: 64 },
-                { x: 23, y: 59 },
-              ],
-            },
-          ],
-        };
-        return (
-          <div>
-            testing
-
-          </div>
-        );
-        */
-    /*
-        const { items, isLoading, error } = this.state;
-        if (error) {
-          return <p>{error.message}</p>;
-        }
-
-        if (isLoading) {
-          return <p>Loading ...</p>;
-        } else {
-          return (
-            <section>
-              testing
-            </section>
-          );
-        }
-        */
-       
+        );       
   }
 }
