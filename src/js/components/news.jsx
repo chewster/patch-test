@@ -75,20 +75,22 @@ export default class News extends Component {
         else {
             return (
                 <section className="section-content" data-section="news" id="news"> 
-                    <h2>News of Today {todaysDate} </h2> 
-                    <form className="form-inline" onSubmit={this.handleSubmit}>
-                        <input
-                            type="text"
-                            className="form-control mb-2 mr-sm-2 mb-sm-0"
-                            placeholder="Search"
-                            value = {searchWord}
-                            onChange={this.handleChange}
-                        />
-                        <button
-                            type="submit"
-                            className="btn btn-primary">submit
-                        </button>
-                    </form>
+                    <div className="header">
+                        <h2>News of Today {todaysDate} </h2> 
+                        <form className="form-inline" onSubmit={this.handleSubmit}>
+                            <input
+                                type="text"
+                                className="form-control mb-2 mr-sm-2 mb-sm-0"
+                                placeholder="Search"
+                                value = {searchWord}
+                                onChange={this.handleChange}
+                            />
+                            <button
+                                type="submit"
+                                className="btn btn-primary">submit
+                            </button>
+                        </form>
+                    </div>
                     <Carousel className = "news-carousel" itemsToShow={3}>
                         {articles.map(article =>
                         <div className="article">

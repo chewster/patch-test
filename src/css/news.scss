@@ -1,27 +1,5 @@
-.colorlib-news {
-    ul {
-        list-style: none;
-        height: 300px;
-        overflow: hidden;
-        width: 100%;
-        li {
-            float: left;
-            width: 30%;
-            max-height: 100%;
-            overflow: hidden;
-
-            .title {
-                color: rgb(47,70,186);
-            }
-            .description {
-                color: rgb(0,0,0);
-            }
-            img {
-                height: 100px;
-                width: 100%;
-            }
-        }
-    }
+.header {
+    padding: 0 80px;
 }
 .news-carousel {
     height: 80vh;
@@ -32,6 +10,7 @@
             width: 100%
         }
         .title {
+            color: rgb(47,70,186);
             font-weight: 600;
         }
         img {

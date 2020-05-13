@@ -5,7 +5,8 @@ import '../../css/header.scss'
 export default class Introduction extends Component {
     render() {
         return (
-          <header className="heder">
+          <header>
+            <div className="content">
             <h1>Christina Chiu</h1>
             <span>This is my patch.com coding assessment.</span>
             <nav id="colorlib-main-menu" role="navigation" className="navbar">
@@ -38,6 +39,7 @@ export default class Introduction extends Component {
                 </ul>
               </div>
             </nav>
+            </div>
           </header>
         );
     }
