@@ -23,8 +23,11 @@ export default class News extends Component {
     componentDidMount() {
         this.setState({ isLoading: true });
         let todaysDate = getCurrentDate(),
-            searchWord = 'today',
-            NEWS_API = 'http://newsapi.org/v2/everything?q='+ searchWord +'&from=' + todaysDate +'&sortBy=publishedAt&apiKey=f9b70e839a1b47e2a8b11a8ad054ec62'; 
+          searchWord = "today",
+          //NEWS_API = 'http://newsapi.org/v2/everything?q='+ searchWord +'&from=' + todaysDate +'&sortBy=publishedAt&apiKey=f9b70e839a1b47e2a8b11a8ad054ec62'
+         NEWS_API = "http://newsapi.org/v2/everything?q=covid&from=2020-05-12&sortBy=publishedAt&apiKey=f9b70e839a1b47e2a8b11a8ad054ec62"; //this is only for latenight testing  
+        console.log("testing the mounting"); 
+        console.log(NEWS_API); 
         fetch(NEWS_API)
             .then(response => {
                 if (response.ok) {
@@ -44,7 +47,16 @@ export default class News extends Component {
 
         if (isLoading) {
             return <p>Loading ...</p>;
-        } else {
+        }
+        else if (articles == undefined || articles.length== 0) {
+            return (
+                <section>
+                    <h2>News of Today</h2> 
+                    NO ARTICLES FOUND
+                </section>
+            )
+        } 
+        else {
             return (
                 <section> 
                     <h2>News of Today</h2> 
