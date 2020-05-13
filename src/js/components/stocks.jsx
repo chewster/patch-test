@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {Bar, Line, Pie} from 'react-chartjs-2';
 
-const state = {
+var state = {
   labels: ["January", "February", "March", "April", "May"],
   datasets: [
     {
@@ -22,58 +22,66 @@ export default class Stocks extends Component {
     this.state = {
       chartData: {},
       error: null,
-      isLoading: false    
+      isLoading: false,
+      graphData: {
+        labels: [],
+        datasets: [
+          {
+            label: "Rainfall",
+            fill: false,
+            lineTension: 0.5,
+            backgroundColor: "rgba(75,192,192,1)",
+            borderColor: "rgba(0,0,0,1)",
+            borderWidth: 2,
+            data: [],
+          },
+        ],
+      },
     };
   }
 
+  handleResponse (response) {
+    console.log("testing the handling of the response");
+    console.log(response);
+    let xAxis = [], 
+        yAxis = [], 
+        testObj=[]; 
+    console.log("testing the x axis"); 
+    console.log("end of testing the x axis");
+    Object.keys(response).forEach(key => testObj.push({ date: key, value: response[key] }));
+    xAxis = testObj.map((item) => item["date"]);
+    yAxis = testObj.map((item) => item['key']);
+    this.setState({graphData:{['label']: xAxis}});
+    state.labels  = xAxis;
+    console.log(xAxis);
+    console.log("testing here");
+    console.log(state.labels);
+    console.log(this.state.graphData);
+  }
   componentDidMount() {
     this.setState({ isLoading: true });
 
     const url = new URL(
       "https://api.worldtradingdata.com/api/v1/forex_history"
     );
-
     let params = {
       "base": "USD",
       "convert_to": "GBP",
       "api_token": "demo",
-    }, 
-    xAxis =[], 
-    yAxis =  [], 
-    testObj =[];
+      "date_from": "2020-03-22",
+      "date_to": "2020-04-04"
+    };
     Object.keys(params)
       .forEach(key => url.searchParams.append(key, params[key]));
-    console.log(url);
-    console.log(url.href);
     fetch(url, {
       method: "GET",
-      })
+    })
       .then((response) => response.json())
-      //.then(json => console.log(json.history));
-      /*
-    .then((json) => Object.keys(json.history).forEach(function (key) {
-      yAxis.push(json.history[key]);
-    }));
-    */
-    //.then((json) => Object.keys(json.history).forEach(key => testObj.push({ date: key, value: json.history[key] })));
-    .then(json => {
-        Object.keys(json.history).forEach(key => {
-            if (testObj.length <=14) {
-                testObj.push({date: key, value: json.history[key]});
-            }
-        }) 
-    });
-    
-
-    console.log("tsting something here");
-    console.log(testObj);
-    console.log(testObj.length);
-    xAxis = testObj.map((item, i) => item[i]["date"]);
-    console.log("testing"); 
-    console.log(yAxis);
-    console.log(xAxis);
+      .then((json) => this.handleResponse(json.history))
+      .catch((error) => this.setState({ error, isLoading: false }));
   }
   render() {
+        const { articles, isLoading, error } = this.state;
         return (
           <div>
             <Line
