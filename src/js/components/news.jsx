@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Carousel from "react-elastic-carousel";
-import './news.scss';
+import '../../css/news.scss';
 
 export function getCurrentDate(separator = '-') {
     let newDate = new Date()
