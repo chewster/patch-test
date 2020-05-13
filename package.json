@@ -1,10 +1,13 @@
 {
+  "homepage": "https://chewster.github.io/patch-test",
   "name": "patch-test",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "predeploy": "npm run build",
+    "deploy": "gh-page -d build",
     "start": "webpack-dev-server --open --mode development",
     "build": "webpack --mode production"
   },
@@ -31,6 +34,7 @@
     "babel-loader": "^8.1.0",
     "css-loader": "^3.5.3",
     "file-loader": "^6.0.0",
+    "gh-pages": "^2.2.0",
     "html-loader": "^1.1.0",
     "html-webpack-plugin": "^4.3.0",
     "node-sass": "^4.14.1",
