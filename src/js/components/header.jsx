@@ -7,7 +7,7 @@ export default class Introduction extends Component {
         return (
           <header className="heder">
             <h1>Christina Chiu</h1>
-            <span>this is my patch.com coding assessment</span>
+            <span>This is my patch.com coding assessment.</span>
             <nav id="colorlib-main-menu" role="navigation" className="navbar">
               <div id="navbar">
                 <ul className="nav-items">

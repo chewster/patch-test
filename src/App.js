@@ -10,9 +10,9 @@ class App extends Component {
       <div id="colorlib-page">
         <div id="container-wrap">
           <div id="colorlib-main">
-            <Header></Header>
-            <News></News>
-            <Stocks></Stocks>
+            <Header/>
+            <News/>
+            <Stocks/>
           </div>
         </div>
       </div>

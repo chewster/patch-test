@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Carousel from "react-elastic-carousel";
 import '../../css/news.scss';
 
-export function getCurrentDate(separator = '-') {
+function getCurrentDate(separator = '-') {
     let newDate = new Date()
     let date = newDate.getDate();
     let month = newDate.getMonth() + 1;
@@ -29,15 +29,11 @@ export default class News extends Component {
         this.setState({ isLoading: true });
         let NEWS_API = 'http://newsapi.org/v2/everything?q=' + word + '&from=' + this.state.todaysDate + '&sortBy=publishedAt&apiKey=f9b70e839a1b47e2a8b11a8ad054ec62';
         fetch(NEWS_API)
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    throw new Error('Something went wrong ... no data found');
-                }
-            })
-            .then(data => this.setState({ articles: data.articles, isLoading: false }))
-            .catch(error => this.setState({ error, isLoading: false }));
+          .then((response) => response.json())
+          .then((data) =>
+            this.setState({ articles: data.articles, isLoading: false })
+          )
+          .catch((error) => this.setState({ error, isLoading: false }));
     }
 
     handleSubmit(event)  {
