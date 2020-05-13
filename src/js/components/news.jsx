@@ -65,7 +65,7 @@ export default class News extends Component {
         }
         else if (articles == undefined || articles.length== 0) {
             return (
-                <section>
+                <section className="colorlib-news" data-section="news">
                     <h2>News of Today {todaysDate} </h2> 
                     NO ARTICLES FOUND
                 </section>
@@ -73,7 +73,7 @@ export default class News extends Component {
         } 
         else {
             return (
-                <section> 
+                <section className="section-content" data-section="news" id="news"> 
                     <h2>News of Today {todaysDate} </h2> 
                     <form className="form-inline" onSubmit={this.handleSubmit}>
                         <input

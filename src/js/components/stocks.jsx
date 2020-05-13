@@ -85,22 +85,24 @@ export default class Stocks extends Component {
   render() {
         const { graphData, isLoading, error } = this.state;
         return (
-          <div>
-            <Line
-              data={graphData}
-              options={{
-                title: {
-                  display: true,
-                  text: "USD to GBP",
-                  fontSize: 20,
-                },
-                legend: {
-                  display: true,
-                  position: "right",
-                },
-              }}
-            />
-          </div>
+          <section className="section-content" data-section="stocks" id="stocks">
+            <div>
+              <Line
+                data={graphData}
+                options={{
+                  title: {
+                    display: true,
+                    text: "USD to GBP",
+                    fontSize: 20,
+                  },
+                  legend: {
+                    display: true,
+                    position: "right",
+                  },
+                }}
+              />
+            </div>
+          </section>
         );       
   }
 }
