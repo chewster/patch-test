@@ -42,7 +42,12 @@ export default class News extends Component {
 
     handleSubmit(event)  {
         event.preventDefault();
-        this.fetchData(this.state.searchWord);
+        if (this.state.searchWord != '') {
+            this.fetchData(this.state.searchWord);
+        }
+        else {
+            alert("No search input please input a search term");
+        }
     };
     handleChange(event) {
         this.setState({ searchWord: event.target.value });
